@@ -1,1 +1,1 @@
-
+As a final output of the project, the you are expected to upload your designed applications on public cloud (AWS/Azure) and hence need to analyze and explain which application platform will yo be following, and why?
