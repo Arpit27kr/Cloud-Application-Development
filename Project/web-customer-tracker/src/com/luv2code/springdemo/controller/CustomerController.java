@@ -34,6 +34,7 @@ public class CustomerController {
 	
 	
 	@RequestMapping("/list")
+	/*
 	public String listCustomer(Model theModel)
 	{
 		
@@ -41,13 +42,19 @@ public class CustomerController {
 		
 		theModel.addAttribute("customers", theCustomers); // add customer inside the model 
 		
-		 
-		
-		
-		
 		return "list-customer";
 	}
+	*/
 	
+	public String listCustomer(Model theModel) {
+	    new Thread(() -> {
+	        List<Customer> theCustomers = customerService.getCustomers(); 
+	        theModel.addAttribute("customers", theCustomers); 
+	    }).start();
+
+	    return "list-customer";
+	}
+
 	
 	
 	@GetMapping("/showFormForAdd")
@@ -92,7 +99,7 @@ public class CustomerController {
 		return"customer-form";
 	}
 	
-	
+	/*
 	@GetMapping("/delete")
 	public String deleteCustomer(@RequestParam("customerId") int theId)
 	{
@@ -105,8 +112,16 @@ public class CustomerController {
 
 	}
 	
+	*/
 	
-	
+	@GetMapping("/delete")
+	public String deleteCustomer(@RequestParam("customerId") int theId) {
+	    new Thread(() -> {
+	        customerService.deleteCustomer(theId);
+	    }).start();
+
+	    return "redirect:/customer/list";
+	}
 	
 
 }
