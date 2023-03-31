@@ -2,6 +2,25 @@
 <%@ taglib prefix="form"
  uri="http://www.springframework.org/tags/form" %>
 
+<%@ page import="com.luv2code.springdemo.util.SortUtils" %>
+
+<c:url var="sortLinkFirstName" value="/customer/list">
+					<c:param name="sort" value="<%= Integer.toString(SortUtils.FIRST_NAME) %>" />
+				</c:url>		
+                            
+
+				<!-- construct a sort link for last name -->
+				<c:url var="sortLinkLastName" value="/customer/list">
+					<c:param name="sort" value="<%= Integer.toString(SortUtils.LAST_NAME) %>" />
+				</c:url>					
+ 
+				<!-- construct a sort link for email -->
+				<c:url var="sortLinkEmail" value="/customer/list">
+					<c:param name="sort" value="<%= Integer.toString(SortUtils.EMAIL) %>" />
+				</c:url>
+			
+				
+
 <!DOCTYPE html>
 
 <html>
@@ -49,10 +68,10 @@
 		
 			<table>
 				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
-					<th>Action </th>
+					<th><a href="${sortLinkFirstName}">First Name</a></th>
+					<th><a href="${sortLinkLastName}">Last Name</a></th>
+					<th><a href="${sortLinkEmail}">Email</a></th>
+					<th>Action</th>
 				</tr>
 				
 				<!-- loop over and print our customers -->
@@ -71,6 +90,8 @@
 				   <c:param name="customerId" value="${tempCustomer.id}"/>
 				
 				</c:url>
+				
+				
 				
 				
 				
@@ -97,7 +118,10 @@
 					</tr>
 				
 				</c:forEach>
-						
+								
+				
+				
+				
 			</table>
 				
 		</div>
