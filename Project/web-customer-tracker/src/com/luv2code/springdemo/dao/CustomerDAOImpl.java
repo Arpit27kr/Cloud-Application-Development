@@ -27,7 +27,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				
 		// create a query
 		Query<Customer> theQuery = 
-				currentSession.createQuery("from Customer order by lastName", Customer.class);
+				currentSession.createQuery("from Customer order by firstName", Customer.class);
 		
 		// execute query and get result list
 		List<Customer> customers = theQuery.getResultList();
@@ -109,5 +109,4 @@ public class CustomerDAOImpl implements CustomerDAO {
 	   
 
 }
-
 
