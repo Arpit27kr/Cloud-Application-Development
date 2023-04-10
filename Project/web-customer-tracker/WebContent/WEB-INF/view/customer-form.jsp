@@ -6,7 +6,7 @@
 <html>
 
 <head>
-<Title>Save Customer</Title>
+<Title>Save Student</Title>
 
 
 <link type="text/css"
@@ -36,14 +36,14 @@
    <div id="wrapper">
       <div id="header">
    
-                  <h2> CRM -Customer Relationship Manager</h2>
+                  <h2> USM -UPES STUDENT MANAGER</h2>
    
       </div>
    </div>
 
 
    <div id="container">
-      <h3>Save Customer </h3>
+      <h3>Save student </h3>
       
       <form:form action="saveCustomer" modelAttribute="customer" method="post">
       

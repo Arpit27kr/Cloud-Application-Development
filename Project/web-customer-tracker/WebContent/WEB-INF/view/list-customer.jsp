@@ -26,7 +26,7 @@
 <html>
 
 <head>
-	<title>List Customers</title>
+	<title>List Student</title>
 	
 	<!-- reference our style sheet -->
 
@@ -40,7 +40,7 @@
 
 	<div id="wrapper">
 		<div id="header">
-			<h2>CRM - Customer Relationship Manager</h2>
+			<h2>USM - UPES STUDENT MANAGER</h2>
 		</div>
 	</div>
 	
@@ -49,18 +49,32 @@
 		<div id="content">
 		
 		  <!-- Adding new button for adding customer -->
-		  
-		 <input type="button" value="Add Customer"
+		  <div id="background-image">
+		 
+		  <!-- 
+  <img src="/web-customer-tracker/resources/upes.png" alt="Background Image" />
+  
+  
+  
+  
+   -->
+		  </div>
+		 <input type="button" value="Add Student"
 				   onclick="window.location.href='showFormForAdd'; return false;"
 				   class="add-button"
 			/>
 			
 			  <!--  add a search box -->
+			  
             <form:form action="search" method="GET">
-                Search customer: <input type="text" name="theSearchName" />
+                Search Student: <input type="text" name="theSearchName" />
                 
                 <input type="submit" value="Search" class="add-button" />
             </form:form>
+         
+	
+
+		
 		
 		
 		
