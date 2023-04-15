@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.luv2code.springdemo.dao.CustomerDAO;
 import com.luv2code.springdemo.entity.Customer;
+import com.luv2code.springdemo.entity.Login;
 
 
 @Service
@@ -64,6 +65,25 @@ public class CustomerServiceImpl implements CustomerService {
 		// TODO Auto-generated method stub
 		return customerDAO.searchCustomers(theSearchName);
 	}
+	
+	 @Override
+		@Transactional
+	 public Login authenticate(String username, String password) {
+		    Login login = customerDAO.findByUsername(username);
+		    if (login != null && login.getPassword().equals(password)) {
+		        return login;
+		    }
+		    return null;
+		}
+
+
+	    @Override
+		@Transactional
+	    public void saveLogin(Login login) {
+	        customerDAO.saveLogin(login);
+	    }
+
+		
 	
 
 }

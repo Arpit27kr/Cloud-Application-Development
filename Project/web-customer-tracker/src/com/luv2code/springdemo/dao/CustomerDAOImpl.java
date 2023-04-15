@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.luv2code.springdemo.entity.Customer;
+import com.luv2code.springdemo.entity.Login;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
@@ -104,6 +105,25 @@ public class CustomerDAOImpl implements CustomerDAO {
 	                
 	        // return the results        
 	        return customers;
+	}
+
+	@Override
+	public void saveLogin(Login login) {
+		// TODO Auto-generated method stub
+		 Session session = this.sessionFactory.getCurrentSession();
+		    session.save(login);
+		
+	}
+
+	@Override
+	public Login findByUsername(String username) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+        
+        Query<Login> query = session.createQuery("FROM Login WHERE username like :username", Login.class);
+
+        query.setParameter("username", username);
+        return query.uniqueResult();
 	}
 	
 	   

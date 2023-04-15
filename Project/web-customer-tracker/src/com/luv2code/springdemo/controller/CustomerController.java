@@ -2,17 +2,22 @@ package com.luv2code.springdemo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.luv2code.springdemo.dao.CustomerDAO;
 import com.luv2code.springdemo.entity.Customer;
+import com.luv2code.springdemo.entity.Login;
 import com.luv2code.springdemo.service.CustomerService;
 import com.luv2code.springdemo.util.SortUtils;
 
@@ -28,9 +33,12 @@ public class CustomerController {
 	
 	
 	//injecting the customerservice 
+	
+	
+	
+	
 	@Autowired
 	 private CustomerService customerService;
-	
 	
 	
 	
@@ -46,7 +54,28 @@ public class CustomerController {
 		return "list-customer";
 	}
 	
-	
+	@GetMapping("/login")
+    public String showLoginForm(Model model) {
+        model.addAttribute("login", new Login());
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String processLoginForm(@ModelAttribute("login") Login login, BindingResult result, HttpSession session) {
+        Login authenticatedLogin = customerService.authenticate(login.getUsername(), login.getPassword());
+
+        if (authenticatedLogin != null) {
+            session.setAttribute("loggedInUser", authenticatedLogin);
+            return "redirect:/customer/list";
+        } else {
+            result.rejectValue("password", "error.login", "Invalid username or password");
+            return "login";
+        }
+    }
+
+   
+    
+ 
 	
 
 	
